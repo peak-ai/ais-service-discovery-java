@@ -1,6 +1,9 @@
-package ais.service.discovery.java;
+package ais.service.discovery.java.aws;
 
+import ais.service.discovery.java.Discovery;
 import ais.service.discovery.java.IDiscovery;
+import ais.service.discovery.java.ILocator;
+import ais.service.discovery.java.IQueueAdapter;
 import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.services.servicediscovery.AWSServiceDiscovery;
 import com.amazonaws.services.servicediscovery.AWSServiceDiscoveryClientBuilder;
@@ -13,8 +16,9 @@ public class AWSFactory {
                 .withRegion(region)
                 .build();
 
-        ILocator locator = new AwsLocator(serviceDiscovery);
+        ILocator locator = new AWSLocator(serviceDiscovery);
+        IQueueAdapter queueAdapter = new AWSQueue();
 
-        return new Discovery(locator);
+        return new Discovery(locator, queueAdapter);
     }
 }

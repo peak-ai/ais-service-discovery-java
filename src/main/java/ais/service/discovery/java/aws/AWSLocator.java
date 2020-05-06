@@ -1,15 +1,18 @@
-package ais.service.discovery.java;
+package ais.service.discovery.java.aws;
 
+import ais.service.discovery.java.ILocator;
+import ais.service.discovery.java.Service;
 import com.amazonaws.services.servicediscovery.AWSServiceDiscovery;
 import com.amazonaws.services.servicediscovery.model.DiscoverInstancesRequest;
 import com.amazonaws.services.servicediscovery.model.DiscoverInstancesResult;
+import com.amazonaws.services.servicediscovery.model.HealthStatus;
 import com.amazonaws.services.servicediscovery.model.HttpInstanceSummary;
 
-public class AwsLocator implements ILocator {
+public class AWSLocator implements ILocator {
 
     private AWSServiceDiscovery serviceDiscovery = null;
 
-    public AwsLocator(AWSServiceDiscovery serviceDiscovery) {
+    public AWSLocator(AWSServiceDiscovery serviceDiscovery) {
         this.serviceDiscovery = serviceDiscovery;
     }
 
