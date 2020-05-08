@@ -24,4 +24,8 @@ public class Service {
     public String getUrl() {
         return this.url;
     }
+
+    public String getArn() {
+        return this.arn;
+    }
 }
