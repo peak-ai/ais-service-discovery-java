@@ -27,6 +27,9 @@ dependencies {
     implementation("com.google.guava:guava:28.2-jre")
     implementation(platform("com.amazonaws:aws-java-sdk-bom:1.11.774"))
     implementation("com.amazonaws:aws-java-sdk-dynamodb")
+    implementation("com.amazonaws:aws-java-sdk-sqs")
+    implementation("com.amazonaws:aws-java-sdk-sns")
+    implementation("com.amazonaws:aws-java-sdk-lambda")
     implementation("com.amazonaws:aws-java-sdk-servicediscovery")
 
     // Use JUnit test framework

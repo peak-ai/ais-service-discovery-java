@@ -20,4 +20,8 @@ public class Service {
         this.service = service;
         this.instance = instance;
     }
+
+    public String getUrl() {
+        return this.url;
+    }
 }

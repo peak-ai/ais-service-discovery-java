@@ -4,7 +4,7 @@ public class Message {
 
     public String body = "";
 
-    Message(String body) {
+    public Message(String body) {
         this.body = body;
     }
 
