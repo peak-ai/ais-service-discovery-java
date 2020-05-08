@@ -16,6 +16,8 @@ public class ParserTest {
                 "instance"
         );
 
-        assertSame(expected, actual);
+        assertEquals(expected.namespace, actual.namespace);
+        assertEquals(expected.service, actual.service);
+        assertEquals(expected.instance, actual.instance);
     }
 }

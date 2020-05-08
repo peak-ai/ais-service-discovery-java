@@ -8,8 +8,10 @@ public class Parser {
         }
 
         String namespaceService = parts[0];
-        String[] nsParts = namespaceService.split(".");
-        System.out.println("got here..." + " " + nsParts[0]);
+        String[] nsParts = namespaceService.split("\\.");
+        if (nsParts.length < 1) {
+            throw new IllegalArgumentException("Not enough parts for namespace and service");
+        }
 
         String namespace = nsParts[0];
         String service = nsParts[1];

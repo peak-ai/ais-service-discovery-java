@@ -35,8 +35,8 @@ class MockQueue implements IQueueAdapter {
 public class LibraryTest {
     @Test public void testDiscovery() {
         Service expectedService = new Service(
-                "test-arn",
-                "https://my-url",
+                "",
+                "",
                 "my-namespace",
                 "some-service",
                 "an-instance"
@@ -47,6 +47,6 @@ public class LibraryTest {
 
         Discovery discovery = new Discovery(mockLocator, mockQueue);
 
-        assertEquals("test-arn", discovery.discover("my-namespace.some-service->an-instance"));
+        assertEquals(expectedService, discovery.discover("my-namespace.some-service->an-instance"));
     }
 }
