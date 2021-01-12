@@ -1,5 +1,5 @@
 package ais.service.discovery.java;
 
 public interface IFunctionAdapter {
-    Response request(Service service, Request request);
+    <T, R> Response<T> request(Service service, Request<R> request);
 }

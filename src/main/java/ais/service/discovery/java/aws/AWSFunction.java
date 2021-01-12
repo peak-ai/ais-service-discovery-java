@@ -16,11 +16,11 @@ public class AWSFunction implements IFunctionAdapter {
     }
 
     @Override
-    public Response request(Service service, Request request) {
+    public <T, R> Response<T> request(Service service, Request<R> request) {
         InvokeRequest req = new InvokeRequest();
         req.withFunctionName(service.getArn());
         req.withPayload(request.getBody());
         InvokeResult result = this.client.invoke(req);
-        return new Response(result.getPayload(), result.getStatusCode());
+        return new Response<>(result.getPayload(), result.getStatusCode());
     }
 }
