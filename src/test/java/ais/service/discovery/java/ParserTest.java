@@ -1,6 +1,5 @@
 package ais.service.discovery.java;
 
-import ais.service.discovery.java.Parser;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,7 +12,9 @@ public class ParserTest {
                 "",
                 "ais",
                 "service",
-                "instance"
+                "instance",
+                "",
+                ""
         );
 
         assertEquals(expected.namespace, actual.namespace);

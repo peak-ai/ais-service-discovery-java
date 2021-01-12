@@ -7,21 +7,21 @@ import ais.service.discovery.java.IQueueAdapter;
 import ais.service.discovery.java.Service;
 import ais.service.discovery.java.Message;
 
-import com.amazonaws.services.sqs.AmazonSQSClient;
+import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.amazonaws.services.sqs.model.SendMessageResult;
 
 public class AWSQueue implements IQueueAdapter {
 
-    private AmazonSQSClient client = null;
+    private final AmazonSQS client;
 
-    public AWSQueue(AmazonSQSClient client) {
+    public AWSQueue(AmazonSQS client) {
         this.client = client;
     }
 
     public List<Message> listen(Service service) {
         String url = service.getUrl();
-        List<Message> messages = Collections.emptyList();
+        List<Message> messages = new java.util.ArrayList<>(Collections.emptyList());
 
         List<com.amazonaws.services.sqs.model.Message> sqsMessages = this.client.receiveMessage(url).getMessages();
         for (com.amazonaws.services.sqs.model.Message message: sqsMessages) {

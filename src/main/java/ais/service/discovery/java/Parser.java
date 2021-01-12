@@ -17,6 +17,6 @@ public class Parser {
         String service = nsParts[1];
         String instance = parts[1];
 
-        return new Service("", "", namespace, service, instance);
+        return new Service("", "", namespace, service, instance, "", "");
     }
 }

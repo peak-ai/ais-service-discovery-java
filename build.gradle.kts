@@ -31,6 +31,8 @@ dependencies {
     implementation("com.amazonaws:aws-java-sdk-sns")
     implementation("com.amazonaws:aws-java-sdk-lambda")
     implementation("com.amazonaws:aws-java-sdk-servicediscovery")
+    implementation("org.jetbrains:annotations:20.1.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.8.9")
 
     // Use JUnit test framework
     testImplementation("junit:junit:4.12")

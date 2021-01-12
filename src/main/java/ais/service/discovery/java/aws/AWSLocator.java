@@ -26,13 +26,18 @@ public class AWSLocator implements ILocator {
 
         String arn = instanceSummary.getAttributes().get("arn");
         String url = instanceSummary.getAttributes().get("url");
+        String name = instanceSummary.getAttributes().get("name");
+        String urn = instanceSummary.getAttributes().get("urn");
 
+        // @todo - maybe make these args into a separate object/model
         return new Service(
-                arn,
-                url,
-                namespace,
-                service,
-                instance
+            arn,
+            url,
+            namespace,
+            service,
+            instance,
+            name,
+            urn
         );
     }
 }
