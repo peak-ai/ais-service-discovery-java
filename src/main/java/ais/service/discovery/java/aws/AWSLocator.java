@@ -3,10 +3,7 @@ package ais.service.discovery.java.aws;
 import ais.service.discovery.java.ILocator;
 import ais.service.discovery.java.Service;
 import com.amazonaws.services.servicediscovery.AWSServiceDiscovery;
-import com.amazonaws.services.servicediscovery.model.DiscoverInstancesRequest;
-import com.amazonaws.services.servicediscovery.model.DiscoverInstancesResult;
-import com.amazonaws.services.servicediscovery.model.HealthStatus;
-import com.amazonaws.services.servicediscovery.model.HttpInstanceSummary;
+import com.amazonaws.services.servicediscovery.model.*;
 
 public class AWSLocator implements ILocator {
 
@@ -23,6 +20,11 @@ public class AWSLocator implements ILocator {
         DiscoverInstancesResult res = this.serviceDiscovery.discoverInstances(request);
 
         HttpInstanceSummary instanceSummary = res.getInstances().get(0);
+        for(HttpInstanceSummary summary : res.getInstances()) {
+            if (summary.getInstanceId().equals(instance)) {
+                instanceSummary = summary;
+            }
+        }
 
         String arn = instanceSummary.getAttributes().get("arn");
         String url = instanceSummary.getAttributes().get("url");

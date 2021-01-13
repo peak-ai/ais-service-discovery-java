@@ -29,6 +29,7 @@ dependencies {
     implementation("com.amazonaws:aws-java-sdk-dynamodb")
     implementation("com.amazonaws:aws-java-sdk-sqs")
     implementation("com.amazonaws:aws-java-sdk-sns")
+    implementation("com.amazonaws:aws-java-sdk-sts")
     implementation("com.amazonaws:aws-java-sdk-lambda")
     implementation("com.amazonaws:aws-java-sdk-servicediscovery")
     implementation("org.jetbrains:annotations:20.1.0")
