@@ -22,7 +22,7 @@ repositories {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "peak.codi.service.discovery"
+            groupId = "peak.ais.service.discovery"
             artifactId = "library"
             version = "0.0.1"
 
