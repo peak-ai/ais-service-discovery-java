@@ -1,10 +1,12 @@
-package ais.service.discovery.java;
+package ais.service.discovery.java.examples;
 
+import ais.service.discovery.java.IDiscovery;
+import ais.service.discovery.java.Message;
 import ais.service.discovery.java.aws.AWSFactory;
 
 import java.util.List;
 
-public class Example {
+public class SQSExample {
     public static void main(String[] args) {
         try {
             IDiscovery discovery = AWSFactory.build("eu-west-1");

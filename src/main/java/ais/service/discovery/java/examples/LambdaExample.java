@@ -2,7 +2,6 @@ package ais.service.discovery.java.examples;
 
 import ais.service.discovery.java.*;
 import ais.service.discovery.java.aws.AWSFactory;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public class LambdaExample {
@@ -14,10 +13,6 @@ public class LambdaExample {
         public String timezone;
         public String tenantType;
         public JsonNode envs;
-
-        public MyClass(@JsonProperty("name") String name) {
-            this.name = name;
-        }
 
         public MyClass(String name, String tenant, boolean dataLake) {
             this.name = name;

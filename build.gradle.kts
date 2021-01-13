@@ -9,6 +9,7 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     `java-library`
+    `maven-publish`
 }
 
 repositories {
@@ -18,6 +19,17 @@ repositories {
     mavenCentral()
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "peak.codi.service.discovery"
+            artifactId = "library"
+            version = "0.0.1"
+
+            from(components["java"])
+        }
+    }
+}
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
