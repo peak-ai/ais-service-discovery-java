@@ -1,7 +1,7 @@
 package ais.service.discovery.java.aws;
 
 import ais.service.discovery.java.*;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.servicediscovery.AWSServiceDiscovery;
 import com.amazonaws.services.servicediscovery.AWSServiceDiscoveryClientBuilder;
 
@@ -15,7 +15,8 @@ import com.amazonaws.services.sns.AmazonSNSAsyncClientBuilder;
 
 public class AWSFactory {
     public static IDiscovery build(String region) {
-        ProfileCredentialsProvider creds = new ProfileCredentialsProvider();
+        DefaultAWSCredentialsProviderChain creds = DefaultAWSCredentialsProviderChain.getInstance();
+
         AWSServiceDiscovery serviceDiscovery = AWSServiceDiscoveryClientBuilder
                 .standard()
                 .withCredentials(creds)

@@ -10,29 +10,20 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     `java-library`
     `maven-publish`
+    signing
 }
 
+group = "com.github.peak-ai"
+version = "1.2"
+
+val sonatypeUsername: String by project
+val sonatypePassword: String by project
+println(JavaVersion.current())
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
     mavenCentral()
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = "peak.ais.service.discovery"
-            artifactId = "library"
-            version = "0.0.1"
-
-            from(components["java"])
-        }
-    }
-}
-
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
     api("org.apache.commons:commons-math3:3.6.1")
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
@@ -50,3 +41,78 @@ dependencies {
     // Use JUnit test framework
     testImplementation("junit:junit:4.12")
 }
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("peakLibrary") {
+            groupId = "com.github.peak-ai"
+            artifactId = "ais-service-discovery-java"
+            version = "1.2"
+            from(components["java"])
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name.set("ais-service-discovery-java")
+                description.set("Service discovery package for Java")
+                url.set("https://github.com/peak-ai/ais-service-discovery-java")
+                properties.set(mapOf(
+                        "myProp" to "value",
+                        "prop.with.dots" to "anotherValue"
+                ))
+                licenses {
+                    license {
+                        name.set("GNU GENERAL PUBLIC LICENSE, Version 3")
+                        url.set("https://www.gnu.org/licenses/gpl-3.0.en.html")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("tusharmittal")
+                        name.set("Tushar Mittal")
+                        email.set("tushar.mittal@peak.ai")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/peak-ai/ais-service-discovery-java.git")
+                    developerConnection.set("scm:git:ssh://github.com:peak-ai/ais-service-discovery-java.git")
+                    url.set("https://github.com/peak-ai/ais-service-discovery-java/tree/master")
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            // change URLs to point to your repos, e.g. http://my.org/repo
+            val releasesRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+//            val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots")
+            url = releasesRepoUrl
+            println(url)
+            credentials {
+                username = sonatypeUsername
+                password = sonatypePassword
+            }
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications["peakLibrary"])
+}
+
+tasks.javadoc {
+    if (JavaVersion.current().isJava9Compatible) {
+        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+    }
+}
+
