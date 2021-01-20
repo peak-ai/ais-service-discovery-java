@@ -2,8 +2,9 @@
 
 ## Status
 
-__Work in progress__.
+The package is available in the Maven Central repository: [ais-service-discovery-java](https://search.maven.org/artifact/com.github.peak-ai/ais-service-discovery-java) 
 
+Compatible Java SDK version: `adopt-openj9-1.8`
 
 ## Example Useage
 
